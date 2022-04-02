@@ -104,8 +104,8 @@ async def upload_to_tg(
             ba_se_file_name = os.path.basename(local_file_name)
             await i_m_s_g.edit_text(
                 f"<b><i>📨 Algılanan dosya boyutu: {d_f_s}</i></b> \n"
-                f"📬<code>{ba_se_file_name}</code><i><b> Bölmeye çalışıyorum {number_of_files} Files🗃.</b></i>\n"
-                "<i><b>📤 Dosya Telegrama Yükleniyor 📤, Şimdi...</b></i>"
+                f"📬<code>{ba_se_file_name}</code><i><b> Bölmeye çalışıyorum {number_of_files} Dosya🗃.</b></i>\n"
+                "<i><b>📤Dosya Telegrama Yükleniyor...📤</b></i>"
             )
             for le_file in totlaa_sleif:
                 # recursion: will this FAIL somewhere?
@@ -139,7 +139,7 @@ async def upload_to_tg(
     return dict_contatining_uploaded_files
 
 
-# © gautamajay52 thanks to Rclone team for this wonderful tool.🧘
+# © baygoktas beye emekleri için teşekkür ederiz.🧘
 
 
 async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
@@ -218,7 +218,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"🤖: Başarıyla yüklendi `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>🤒</a>\n📀 Size: {gjay}",
+            f"🤖: Başarıyla yüklendi `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>🤒</a>\n📀 Boyut: {gjay}",
             reply_markup=button_markup,
         )
         os.remove(file_upload)
@@ -286,7 +286,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"🤖: Başarıyla yüklendi `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>🤒</a>\n📀 Size: {gjay}",
+            f"🤖: Başarıyla yüklendi `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>🤒</a>\n📀 Boyut: {gjay}",
             reply_markup=button_markup,
         )
         shutil.rmtree(file_upload)
@@ -337,7 +337,7 @@ async def upload_single_file(
             disable_notification=True,
             progress=prog.progress_for_pyrogram,
             progress_args=(
-                f"**• Uploading :** `{os.path.basename(local_file_name)}`",
+                f"**• Yükleniyor... :** `{os.path.basename(local_file_name)}`",
                 start_time,
             ),
         )
@@ -377,7 +377,7 @@ async def upload_single_file(
                     )
                 else:
                     if not yt_thumb:
-                        LOGGER.info("Taking Screenshot..")
+                        LOGGER.info("Ekran görüntüsü alınıyor..")
                         thumb_image_path = await take_screen_shot(
                             local_file_name,
                             os.path.dirname(os.path.abspath(local_file_name)),
@@ -547,7 +547,7 @@ async def upload_single_file(
             time.sleep(g.x)
         except Exception as e:
             LOGGER.info(e)
-            await message_for_progress_display.edit_text("**FAILED**\n" + str(e))
+            await message_for_progress_display.edit_text("**Başarısız**\n" + str(e))
         else:
             if message.message_id != message_for_progress_display.message_id:
                 try:
