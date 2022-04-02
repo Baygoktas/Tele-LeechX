@@ -56,10 +56,10 @@ async def incoming_message_f(client, message):
     g_id = message.from_user.id
     u_men = message.from_user.mention
     credit = await message.reply_text(
-        f"<b><i>🛃 Working For 🛃:</i></b> {u_men}", parse_mode="html"
+        f"<b><i>🛃 Kullanıcı 🛃:</i></b> {u_men}", parse_mode="html"
     )
     # get link from the incoming message
-    i_m_sefg = await message.reply_text("<code>Processing . . . 🔄</code>", quote=True)
+    i_m_sefg = await message.reply_text("<code>Dönüştürülüyur . . . 🔄</code>", quote=True)
     rep_mess = message.reply_to_message
     is_file = False
     dl_url = ''
@@ -76,7 +76,7 @@ async def incoming_message_f(client, message):
         else:
             if user_command == LEECH_COMMAND.lower():
                 u_men = message.from_user.mention
-                await i_m_sefg.edit(f"<i> Hey {u_men}, \n\n ⚠️ Check and Send a Valid Download Source to Start Me Up !! ⚠️</i>")
+                await i_m_sefg.edit(f"<i> Hey {u_men}, \n\n ⚠️ Botu başlatmak için indirme bağlantısı gönderin !! ⚠️</i>")
                 return
             is_file = True
             dl_url = rep_mess
@@ -85,7 +85,7 @@ async def incoming_message_f(client, message):
         LOGGER.info(dl_url)
 
     else:
-        await i_m_sefg.edit("<b>⚠️ Opps ⚠️</b>\n\n <b><i>⊠ Reply with Direct/Torrent Link or File⁉️</i></b>")
+        await i_m_sefg.edit("<b>⚠️ Hata ⚠️</b>\n\n <b><i>⊠ Magnet linki veya torrent dosyası gönder⁉️</i></b>")
         return
     if dl_url is not None:
 
@@ -99,13 +99,13 @@ async def incoming_message_f(client, message):
             os.makedirs(new_download_location)
         aria_i_p = ''
         if not is_file:
-            await i_m_sefg.edit_text("<code>Extracting Links . . . 🔀</code>")
+            await i_m_sefg.edit_text("<code>Link işleniyor . . . 🔀</code>")
             # start the aria2c daemon
             aria_i_p = await aria_start()
             # LOGGER.info(aria_i_p)
         
         u_men = message.from_user.mention
-        await i_m_sefg.edit_text(f"<b>👤 User : {u_men} \n Your Request Has Been Added To The Status \n Use /status To Check Your Progress</b>")
+        await i_m_sefg.edit_text(f"<b>👤 Kullanııcı : {u_men} \n İşlemin sıraya eklendi az sabırlı ol \n Use /status İlerlemeyi takip etmek için</b>")
         # try to download the "link"
         is_zip = False
         is_cloud = False
@@ -144,7 +144,7 @@ async def incoming_message_f(client, message):
             await i_m_sefg.edit_text(err_message)
     else:
         await i_m_sefg.edit_text(
-            f"<b> 🏖Maybe You Didn't Know I am Being Used !!</b> \n\n<b>🌐 API Error</b>: {cf_name}"
+            f"<b> 🏖 Belki de kullandığımı bilmiyordunuz !!</b> \n\n<b>🌐 API Hatası</b>: {cf_name}"
         )
 
 
@@ -153,9 +153,9 @@ async def incoming_youtube_dl_f(client, message):
     current_user_id = message.from_user.id
     u_men = message.from_user.mention
     credit = await message.reply_text(
-        f"<b><i>🛃 Working For 🛃:</i></b> {u_men}", parse_mode="html"
+        f"<b><i>🛃 Kullanıcı 🛃:</i></b> {u_men}", parse_mode="html"
     )
-    i_m_sefg = await message.reply_text("<code>Prrocessing...🔃</code>", quote=True)
+    i_m_sefg = await message.reply_text("<code>İşleniyor...🔃</code>", quote=True)
     # LOGGER.info(message)
     # extract link from message
     if message.reply_to_message:
@@ -172,10 +172,10 @@ async def incoming_youtube_dl_f(client, message):
         yt_dl_pass_word = None
         cf_name = None
     else:
-        await i_m_sefg.edit("<b>⚠️ Opps ⚠️</b>\n\n <b><i>⊠ Reply To YTDL Supported Link.</i></b>")
+        await i_m_sefg.edit("<b>⚠️ Hata ⚠️</b>\n\n <b><i>⊠ ytdl destekleye link gönder.</i></b>")
         return
     if dl_url is not None:
-        await i_m_sefg.edit_text("<code>Extracting Links . . . 🔀</code>")
+        await i_m_sefg.edit_text("<code>Link işleniyor. . . 🔀</code>")
         # create an unique directory
         user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
         # create download directory, if not exist
@@ -202,7 +202,7 @@ async def incoming_youtube_dl_f(client, message):
             await i_m_sefg.edit_text(text=text_message, reply_markup=reply_markup)
     else:
         await i_m_sefg.edit_text(
-            "<b> 🏖Maybe You Didn't Know I am Being Used !!</b> \n\n<b>🌐 API Error</b>: {cf_name}"
+            "<b> 🏖Belki de kullandığımı bilmiyordunuz !!</b> \n\n<b>🌐 API Hatası</b>: {cf_name}"
         )
 
 
@@ -222,18 +222,18 @@ async def g_yt_playlist(client, message):
         if user_command == GPYTDL_COMMAND.lower():
             is_cloud = True
     else:
-        await message.reply_text("<b> Reply with Youtube Playlist link</b>", quote=True)
+        await message.reply_text("<b> Bir playlist linki yanıtla</b>", quote=True)
         return
     if "youtube.com/playlist" in url:
         u_men = message.from_user.mention
         i_m_sefg = await message.reply_text(
-            f"<b>Ok Fine 🐈 {u_men} Bro!!:\n Your Request has been ADDED</b>\n\n <code> Please wait until Upload</code>",
+            f"<b>Tamam Harika 🐈 {u_men} Dostum!!:\n İşlemini sıraya ekledim/b>\n\n <code> Yüklenene kadar sabret</code>",
             parse_mode="html",
         )
         await yt_playlist_downg(message, i_m_sefg, client, is_cloud)
 
     else:
-        await message.reply_text("<b>YouTube playlist link only 🙄</b>", quote=True)
+        await message.reply_text("<b>Sadece YouTube playlist linki 🙄</b>", quote=True)
 
  #
 
@@ -259,7 +259,7 @@ async def g_clonee(client, message):
 async def rename_tg_file(client, message):
     usr_id = message.from_user.id
     if not message.reply_to_message:
-        await message.reply("<b>⚠️ Opps ⚠️</b>\n\n <b><i>⊠ Reply with Telegram Media (File / Video)⁉️</b>", quote=True)
+        await message.reply("<b>⚠️ Hata ⚠️</b>\n\n <b><i>⊠ Telegrama ne olarak yüklensin (Dosya / Video)⁉️</b>", quote=True)
         return
     if len(message.command) > 1:
         new_name = (
@@ -297,12 +297,12 @@ async def rename_tg_file(client, message):
                 message_to_send += "\n"
             if message_to_send != "":
                 mention_req_user = (
-                    f"<a href='tg://user?id={usr_id}'><i>🗃 Your Uploaded Files !!</i></a>\n\n"
+                    f"<a href='tg://user?id={usr_id}'><i>🗃 Dosya yüklendi!!</i></a>\n\n"
                 )
                 message_to_send = mention_req_user + message_to_send
-                message_to_send = message_to_send + "\n\n" + "#Uploads\n\n<b>💥 <i>Powered By : @FuZionX</i> </b>"
+                message_to_send = message_to_send + "\n\n" + "#Yüklendi\n\n<b>💥 <i>Geliştirici: @Baygoktas</i> </b>"
             else:
-                message_to_send = "<i>FAILED</i> to upload files. 😞😞"
+                message_to_send = "<i>Başarısız</i> dosyalar yüklenmedi. 😞😞"
             await message.reply_text(
                 text=message_to_send, quote=True, disable_web_page_preview=True
             )
@@ -311,5 +311,5 @@ async def rename_tg_file(client, message):
 
     else:
         await message.reply_text(
-            "<b>⚠️ Oops ⚠️</b>\n\n⚡Provide Name with extension.\n\n➩<b>Example</b>: <code> /rename Sample.mkv</code>", quote=True
+            "<b>⚠️ Hata ⚠️</b>\n\n⚡uzantıya sahip bir ad yolla.\n\n➩<b>Örnek</b>: <code> /rename Örneğin.mkv</code>", quote=True
         )
