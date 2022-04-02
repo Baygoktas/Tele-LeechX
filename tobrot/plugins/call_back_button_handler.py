@@ -32,14 +32,14 @@ async def button(bot, update: CallbackQuery):
         else:
             await bot.answer_callback_query(
                 callback_query_id=update.id,
-                text="⚠️ Opps ⚠️ \n I Got a False Visitor 🚸 !! \n\n 📛 Stay At Your Limits !!📛",
+                text="⚠️ Hata ⚠️ \n Yanliş kişi dostum 🚸 !! \n\n 📛 Sınır dolu az bekle !!📛",
                 show_alert=True,
                 cache_time=0,
             )
         return
     if "|" in cb_data:
         await bot.answer_callback_query(
-            update.id, text="Processing . . . 🛠", show_alert=False
+            update.id, text="İşleniyor . . . 🛠", show_alert=False
         )
         await youtube_dl_call_back(bot, update)
         return
@@ -53,11 +53,11 @@ async def button(bot, update: CallbackQuery):
     if cb_data.startswith("cancel"):
         if (update.from_user.id == update.message.reply_to_message.from_user.id) or g:
             await bot.answer_callback_query(
-                update.id, text="trying to cancel...", show_alert=False
+                update.id, text="İptal ediliyor...", show_alert=False
             )
             if len(cb_data) > 1:
                 i_m_s_e_g = await update.message.reply_to_message.reply_text(
-                    "checking..?", quote=True
+                    "Kontrol ettin mi..?", quote=True
                 )
                 aria_i_p = await aria_start()
                 g_id = cb_data.split()[-1]
@@ -76,21 +76,21 @@ async def button(bot, update: CallbackQuery):
                         else:
                             os.remove(file_name)
                     await i_m_s_e_g.edit_text(
-                        f"Leech Cancelled by <a href='tg://user?id={update.from_user.id}'>{update.from_user.first_name}</a>"
+                        f"Leech iptal edildi <a href='tg://user?id={update.from_user.id}'>{update.from_user.first_name}</a>"
                     )
                 except Exception as e:
-                    await i_m_s_e_g.edit_text("<i>FAILED</i>\n\n" + str(e) + "\n#error")
+                    await i_m_s_e_g.edit_text("<i>Hata</i>\n\n" + str(e) + "\n#Hata")
         else:
             await bot.answer_callback_query(
                 callback_query_id=update.id,
-                text="who are you? 🤪🤔🤔🤔",
+                text="Sen kimsin? 🤪🤔🤔🤔",
                 show_alert=True,
                 cache_time=0,
             )
-    elif cb_data == "fuckingdo":
+    elif cb_data == "Defol":
         if (update.from_user.id in AUTH_CHANNEL) or g:
             await bot.answer_callback_query(
-                update.id, text="trying to delete...", show_alert=False
+                update.id, text="Siliniyor...", show_alert=False
             )
             g_d_list = [
                 "app.json",
@@ -129,13 +129,13 @@ async def button(bot, update: CallbackQuery):
                         os.remove(f)
                     else:
                         shutil.rmtree(f)
-                await update.message.edit_text(f"<code>🔃 Deleted {len(g_del_list)} Objects 🚮</code>")
+                await update.message.edit_text(f"<code>🔃 Silindi {len(g_del_list)} Dosyalar 🚮</code>")
             else:
-                await update.message.edit_text("<i>⛔ Nothing to clear ⛔ \nAs Per I Get to Know !! </i>")
+                await update.message.edit_text("<i>⛔ Silinecek bir şey yok ⛔ \nBaşı olarak tanıyorum !! </i>")
         else:
-            await update.message.edit_text("<i>I Got Info, \nYou Are Not Allowed to Do This 🤭</i>")
-    elif cb_data == "fuckoff":
+            await update.message.edit_text("<i>Bilgi aldım, \nBunu yapacak yetkin yok 🤭</i>")
+    elif cb_data == "Defol":
         await bot.answer_callback_query(
-            update.id, text="Going to Cancel . . . 🔃", show_alert=False
+            update.id, text="İptal ediliyor . . . 🔃", show_alert=False
         )
-        await update.message.edit_text("<i>☢ Okay! ☢ \n\n ⌧ Don't Disturb Me !! </i>")
+        await update.message.edit_text("<i>☢ Tamam! ☢ \n\n ⌧ Beni rahatsız etme !! </i>")
