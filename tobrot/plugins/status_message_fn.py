@@ -41,13 +41,13 @@ from tobrot.UserDynaConfig import UserDynaConfig
 async def upload_as_doc(client, message):
     user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,True)
     u_men = message.from_user.mention
-    await message.reply_text(f"<i><b>👤 User : {u_men} \n\n🏷Toggle Changed : <code>Document 📂</code></b></i>")
+    await message.reply_text(f"<i><b>👤 Kullanıcı : {u_men} \n\n🏷Toggle Changed : <code>Dosya 📂</code></b></i>")
 
 
 async def upload_as_video(client, message):
     user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,False)
     u_men = message.from_user.mention
-    await message.reply_text(f"<i><b>👤 User : {u_men}\n\n🏷Toggle Changed : <code>Video 🎞</code></b></i>")
+    await message.reply_text(f"<i><b>👤 Kullanıcı : {u_men}\n\n🏷Toggle Changed : <code>Video 🎞</code></b></i>")
  
 
 async def status_message_f(
@@ -55,7 +55,7 @@ async def status_message_f(
 ):  # weird code but 'This is the way' @gautamajay52
     aria_i_p = await aria_start()
     # Show All Downloads
-    to_edit = await message.reply("<code>Processing . . . 🔄</code>")
+    to_edit = await message.reply("<code>Dönüştürülüyor . . . 🔄</code>")
     chat_id = int(message.chat.id)
     mess_id = int(to_edit.message_id)
     async with _lock:
@@ -88,17 +88,17 @@ async def status_message_f(
                 percentage = int(file.progress_string(0).split('%')[0])
                 prog = "[{0}{1}]".format("".join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]),"".join([UN_FINISHED_PROGRESS_STR for i in range(20 - math.floor(percentage / 5))]))
                 msg += f"<b>⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊⑊</b>\n"
-                msg += f"\n<b>🔖Filename:</b> <code>{downloading_dir_name}</code>"
-                msg += f"\n<b>📡 Status</b>: <i>Downloading...📥</i>"
+                msg += f"\n<b>🔖 Dosya ismi:</b> <code>{downloading_dir_name}</code>"
+                msg += f"\n<b>📡 İlerleme</b>: <indiriliyor...📥</i>"
                 msg += f"\n<code>{prog}</code>"
-                msg += f"\n<b>🗃 Downloaded</b>: <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code>"
-                msg += f"\n<b>📊Speed</b>: <code>{file.download_speed_string()}</code>,"
-                msg += f"<b>🔍ETA:</b> <code>{file.eta_string()}</code>"  
+                msg += f"\n<b>🗃 İndirildi</b>: <code>{file.progress_string()}</code> <b>of</b> <code>{file.total_length_string()}</code>"
+                msg += f"\n<b>📊 Hız</b>: <code>{file.download_speed_string()}</code>,"
+                msg += f"<b>🔍 Süre:</b> <code>{file.eta_string()}</code>"  
                 #umen = f'<a href="tg://user?id={file.message.from_user.id}">{file.message.from_user.first_name}</a>'
-                #msg += f"\n<b>👤User:</b> {umen} (<code>{file.message.from_user.id}</code>)"
-                #msg += f"\n<b>⚠️Warn:</b> <code>/warn {file.message.from_user.id}</code>"
+                #msg += f"\n<b>👤 Kullanıcı:</b> {umen} (<code>{file.message.from_user.id}</code>)"
+                #msg += f"\n<b>⚠️ Uyarı:</b> <code>/warn {file.message.from_user.id}</code>"
                 msg += f"\n{msgg}"
-                msg += f"\n<b>⛔ Cancel:</b> <code>/cancel {file.gid}</code>"
+                msg += f"\n<b>⛔ İptal:</b> <code>/cancel {file.gid}</code>"
                 msg += "\n"
 
         hr, mi, se = up_time(time.time() - BOT_START_TIME)
@@ -164,10 +164,10 @@ async def cancel_message_f(client, message):
                 downloads = aria_i_p.get_downloads(gid_list)
             aria_i_p.remove(downloads=downloads, force=True, files=True, clean=True)
             await i_m_s_e_g.edit_text(
-                f"⛔<b> Download Cancelled </b>⛔ :\n<code>{name} ({size})</code> By <a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a>"
+                f"⛔<b> İndirme iptal edildi </b>⛔ :\n<code>{name} ({size})</code> By <a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a>"
             )
         except Exception as e:
-            await i_m_s_e_g.edit_text("<i>⚠️ FAILED ⚠️</i>\n\n" + str(e) + "\n#Error")
+            await i_m_s_e_g.edit_text("<i>⚠️ Hata ⚠️</i>\n\n" + str(e) + "\n#Hata")
     else:
         await message.delete()
 
@@ -214,7 +214,7 @@ async def exec_message_f(client, message):
 
 
 async def upload_document_f(client, message):
-    imsegd = await message.reply_text("processing ...")
+    imsegd = await message.reply_text("İşleniyor ...")
     if message.from_user.id in AUTH_CHANNEL:
         if " " in message.text:
             recvd_command, local_file_name = message.text.split(" ", 1)
@@ -227,7 +227,7 @@ async def upload_document_f(client, message):
 
 async def eval_message_f(client, message):
     if message.from_user.id in AUTH_CHANNEL:
-        status_message = await message.reply_text("Processing ...")
+        status_message = await message.reply_text("İşleniyor ...")
         cmd = message.text.split(" ", maxsplit=1)[1]
 
         reply_to_id = message.message_id
