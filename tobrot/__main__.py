@@ -74,21 +74,21 @@ from tobrot.plugins.status_message_fn import (
 )
 
 botcmds = [
-        (f'{BotCommands.LeechCommand}','📨 [Reply] Leech any Torrent/ Magnet/ Direct Link '),
-        (f'{BotCommands.ExtractCommand}', '🔐 Unarchive items . .'),
-        (f'{BotCommands.ArchiveCommand}','🗜 Archive as .tar.gz acrhive... '),
-        (f'{BotCommands.ToggleDocCommand}','📂 Toggle to Document Upload '),
-        (f'{BotCommands.ToggleVidCommand}','🎞 Toggle to Streamable Upload '),
-        (f'{BotCommands.SaveCommand}','🖼 Save Thumbnail For Uploads'),
-        (f'{BotCommands.ClearCommand}','🕹 Clear Thumbnail '),
-        (f'{BotCommands.RenameCommand}','♻️ [Reply] Rename Telegram File '),
-        (f'{BotCommands.StatusCommand}','🖲 Show Bot stats and concurrent Downloads'),
-        (f'{BotCommands.SpeedCommand}','📡 Get Current Server Speed of Your Bot'),
-        (f'{BotCommands.YtdlCommand}','🧲 [Reply] YT-DL Links for Uploading...'),
-        (f'{BotCommands.PytdlCommand}','🧧 [Reply] YT-DL Playlists Links for Uploading...'),
-        (f'{BotCommands.HelpCommand}','🆘 Get Help, How to Use and What to Do. . .'),
-        (f'{BotCommands.LogCommand}','🔀 Get the Bot Log [Owner Only]'),
-        (f'{BotCommands.TsHelpCommand}','🌐 Get help for Torrent Search Module'),
+        (f'{BotCommands.LeechCommand}','📨 Eğer torrent cekiyorsan bu komutu kullan '),
+        (f'{BotCommands.ExtractCommand}', '🔐 Dosyaları arşivden çıkarmak için. .'),
+        (f'{BotCommands.ArchiveCommand}','🗜 Dosyaları arşivlemek için ... '),
+        (f'{BotCommands.ToggleDocCommand}','📂 Toggle dosyası yuklemek için bunu '),
+        (f'{BotCommands.ToggleVidCommand}','🎞 Toggle yüklemesine geç '),
+        (f'{BotCommands.SaveCommand}','🖼 Kapak resmini kaydetmek için '),
+        (f'{BotCommands.ClearCommand}','🕹 Kapak resmini silmek için'),
+        (f'{BotCommands.RenameCommand}','♻️ Telegram dosyasını yeniden adlandırmak için '),
+        (f'{BotCommands.StatusCommand}','🖲 Botun şuanki durumunu öğrenmek için'),
+        (f'{BotCommands.SpeedCommand}','📡 Botun hızını test et'),
+        (f'{BotCommands.YtdlCommand}','🧲 ytdl linki yüklemek için...'),
+        (f'{BotCommands.PytdlCommand}','🧧 Youtube playlist yüklemek için...'),
+        (f'{BotCommands.HelpCommand}','🆘 Yardım almak için. . .'),
+        (f'{BotCommands.LogCommand}','🔀 Günlüğe ulaşmak için'),
+        (f'{BotCommands.TsHelpCommand}','🌐 Torrentte arama yapmak için'),
     ]
 
 if __name__ == "__main__":
@@ -279,7 +279,7 @@ if __name__ == "__main__":
     ##############################################################################
 
 
-    logging.info(f"@{(app.get_me()).username} Has Started Running...🏃💨💨")
+    logging.info(f"@{(app.get_me()).username} Çalışma başladı...🏃💨💨")
     
     idle()
     
