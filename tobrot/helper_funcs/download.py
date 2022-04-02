@@ -75,7 +75,7 @@ async def download_tg(client, message):
         await asyncio.sleep(2)
         if the_real_download_location:
             await mess_age.edit_text(
-                f"<b>🔰İlerleme : <i>İndirildi ✅</i></b> \n\n🏷<b> Path Name</b>:  <code>{the_real_download_location}</code> \n\n♻️<b> Geçen Süre</b>:  <u>{ms}</u> Saniye"
+                f"<b>🔰İlerleme : <i>İndirildi ✅</i></b> \n\n🏷<b> İlerleme ismi</b>:  <code>{the_real_download_location}</code> \n\n♻️<b> Geçen Süre</b>:  <u>{ms}</u> Saniye"
             )
         else:
             await mess_age.edit_text("<b>⛔ İndirme iptal edildi ⛔\n\n Bu bot heroku üzerinde çalışıyor o yüzden sıkıntılı ⁉️</b>")
