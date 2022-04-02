@@ -40,14 +40,14 @@ async def down_load_media_f(client, message):  # to be removed
         await upload_to_gdrive(the_real_download_location_g, mess_age, message, user_id)
     else:
         await mess_age.edit_text(
-            "Reply to a Telegram Media, to upload to the Cloud Drive."
+            "Buluta yüklemem icin bir telegram dosyasına yanıt verin."
         )
 
 
 async def download_tg(client, message):
     user_id = message.from_user.id
     LOGGER.info(user_id)
-    mess_age = await message.reply_text("<b>🔰Status : <i>Starting Downloading...📥</i></b>", quote=True)
+    mess_age = await message.reply_text("<b>🔰İlerleme : <i>İndirme Başlıyor...📥</i></b>", quote=True)
     if not os.path.isdir(DOWNLOAD_LOCATION):
         os.makedirs(DOWNLOAD_LOCATION)
     rep_mess = message.reply_to_message
@@ -63,7 +63,7 @@ async def download_tg(client, message):
                 message=message.reply_to_message,
                 file_name=download_location,
                 progress=prog.progress_for_pyrogram,
-                progress_args=(f"<b>🔰Status : <i>Downloading...📥</i></b>\n\n🗃<b> File Name</b>: `{file_name}`", c_time)
+                progress_args=(f"<b>🔰İlerleme : <i>İndiriliyor...📥</i></b>\n\n🗃<b> Dosya İsmi</b>: `{file_name}`", c_time)
             )
         except Exception as g_e:
             await mess_age.edit(str(g_e))
@@ -75,9 +75,9 @@ async def download_tg(client, message):
         await asyncio.sleep(2)
         if the_real_download_location:
             await mess_age.edit_text(
-                f"<b>🔰Status : <i>Downloaded ✅</i></b> \n\n🏷<b> Path Name</b>:  <code>{the_real_download_location}</code> \n\n♻️<b> Time Taken</b>:  <u>{ms}</u> Seconds"
+                f"<b>🔰İlerleme : <i>İndirildi ✅</i></b> \n\n🏷<b> Path Name</b>:  <code>{the_real_download_location}</code> \n\n♻️<b> Geçen Süre</b>:  <u>{ms}</u> Saniye"
             )
         else:
-            await mess_age.edit_text("<b>⛔ Download Cancelled ⛔\n\n Some Error Happened Due to I am Hosted on Heroku, Try Again ⁉️</b>")
+            await mess_age.edit_text("<b>⛔ İndirme iptal edildi ⛔\n\n Bu bot heroku üzerinde çalışıyor o yüzden sıkıntılı ⁉️</b>")
             return None, mess_age
     return the_real_download_location, mess_age
