@@ -219,7 +219,7 @@ async def call_apropriate_function(
                     aria_instance, err_message, sent_message_to_update_tg_p, None
                 )
             else:
-                return False, "can't get metadata \n\n#MetaDataError"
+                return False, "Veriler alınamıyor \n\n#Verihatası"
         await asyncio.sleep(1)
         try:
             file = aria_instance.get_download(err_message)
@@ -302,9 +302,9 @@ async def call_apropriate_function(
                         f"<a href='tg://user?id={user_id}'><i>🗃 Yüklenen Dosyalarınız !!</i></a>\n\n"
                     )
                     message_to_send = mention_req_user + message_to_send
-                    message_to_send = message_to_send + "\n\n" + "#Uploads\n\n<b>💥 <i>Bot sahibi : @baygoktass</i> </b>"
+                    message_to_send = message_to_send + "\n\n" + "#Yüklendi\n\n<b>💥 <i>Bot sahibi : @baygoktass</i> </b>"
                 else:
-                    message_to_send = "<i>FAILED</i> to upload files. 😞😞"
+                    message_to_send = "<i>Başarısız</i> Dosyalar yüklenmedi. 😞😞"
                 await user_message.reply_text(
                     text=message_to_send, quote=True, disable_web_page_preview=True
                 )
@@ -332,7 +332,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                             f"⛔ İndirme iptal ediliyor . .⛔ \n\n ⌧ <i>FileName: `{file.name}` \n⌧ Torrent linki veya dosyası yavaş  (Less Seeds to Process).</i>"
                         )
                         await event.reply(
-                            f"⛔ İndirme iptal edildi ⛔ :\n\n⌧ <i>FileName: </i><code>{file.name}</code>\n\n #MetaDataError", quote=True
+                            f"⛔ İndirme iptal edildi ⛔ :\n\n⌧ <i>Dosya ismi: </i><code>{file.name}</code>\n\n #Verihatası", quote=True
                         )
                         file.remove(force=True, files=True)
                         return
@@ -351,7 +351,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                 # await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
                 if not file.is_metadata:
                     await event.edit(
-                        f"<b>🔰İlerleme: <i>Yüklenen 📥</i></b>:\n\n📨 <b><i>File Name</i></b>: \n`{file.name}`\n\n🗃 <b><i>Toplam Dosya</i></b>: 《 `{file.total_length_string()}` 》\n\n #İndirildi" 
+                        f"<b>🔰İlerleme: <i>Yüklenen 📥</i></b>:\n\n📨 <b><i>Dosya ismi</i></b>: \n`{file.name}`\n\n🗃 <b><i>Toplam Dosya</i></b>: 《 `{file.total_length_string()}` 》\n\n #İndirildi" 
                     )
                 return
         except aria2p.client.ClientException:
